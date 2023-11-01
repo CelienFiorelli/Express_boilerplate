@@ -1,0 +1,4 @@
+{
+    "connectString": "mongodb+srv://...",
+    "token": "UnTokenSecret"
+}
