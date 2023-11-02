@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
                 return res.sendStatus(403);
             }
 
-            req.user = await User.findOne({ pseudo: user.username });
+            req.user = user;
             next();
         });
     } else {

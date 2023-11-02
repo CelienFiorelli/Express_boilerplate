@@ -1,4 +1,10 @@
 {
-    "connectString": "mongodb+srv://...",
+    "database": {
+        "username": "",
+        "password": "",
+        "host": "localhost",
+        "dialect": "mysql",
+        "database": ""
+    },
     "token": "UnTokenSecret"
 }
