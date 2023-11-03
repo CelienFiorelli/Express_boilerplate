@@ -20,7 +20,7 @@ router.post('/register', verifyParams(["username", "password"]), async (req, res
             password: hash,
         })
 
-        const accessToken = jwt.sign({ username: user.username, role: user.role }, token);
+        const accessToken = jwt.sign({ userId: user.id}, token);
         return res.send({ token: accessToken })
         
     } catch (error) {
@@ -38,7 +38,7 @@ router.post('/login', verifyParams(["username", "password"]), async (req, res) =
         const accessToken = jwt.sign({ username: user.username,  role: user.role }, token);
         return res.send({ token: accessToken })
     } catch (error) {
-        return res.status(403).send({
+        return res.status(404).send({
             message: "user doesnt exist"
         });
     }

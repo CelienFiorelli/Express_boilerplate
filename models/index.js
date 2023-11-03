@@ -7,11 +7,13 @@ const sequelize = new Sequelize(database.database, database.username, database.p
   dialect: database.dialect
 });
 
+const usersDefine = require("./users.model.js");
+
 const db = {
     Sequelize: Sequelize,
     sequelize: sequelize,
+    users: usersDefine(sequelize, Sequelize),
 };
 
-db.users = require("./users.model.js")(sequelize, Sequelize);
 
 module.exports = db;
