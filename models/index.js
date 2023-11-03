@@ -1,11 +1,12 @@
 
 const { Sequelize } = require('sequelize');
-const { database } = require('../config.json')
 
-const sequelize = new Sequelize(database.database, database.username, database.password, {
-  host: database.host,
-  dialect: database.dialect
+
+const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USERNAME, process.env.DATABASE_PASSWORD, {
+  host: process.env.DATABASE_HOST,
+  dialect: process.env.DATABASE_DIALECT
 });
+
 
 sequelize.sync()
     .then(() => {

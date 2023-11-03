@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { token } = require('../config.json');
 const express = require('express');
 const { verifyParams } = require("../middleware/verifyParams");
 const Users = require('../models/users.model');
@@ -18,10 +17,11 @@ router.post('/register', verifyParams(["username", "password"]), async (req, res
             password: hash,
         })
 
-        const accessToken = jwt.sign({ userId: user.id}, token);
+        const accessToken = jwt.sign({ userId: user.id}, process.env.TOKEN);
         return res.send({ token: accessToken })
         
     } catch (error) {
+        console.log(error);
         return res.status(409).send({ message: `${req.body.username} already exists`});
     }
 })
@@ -34,7 +34,7 @@ router.post('/login', verifyParams(["username", "password"]), async (req, res) =
             return res.status(403).send({ message: "invalid credentials"})
         }
 
-        const accessToken = jwt.sign({ username: user.username,  role: user.role }, token);
+        const accessToken = jwt.sign({ username: user.username,  role: user.role }, process.env.TOKEN);
         return res.send({ token: accessToken })
     } catch (error) {
         return res.status(404).send({
