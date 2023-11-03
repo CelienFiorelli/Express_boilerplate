@@ -7,13 +7,12 @@ const sequelize = new Sequelize(database.database, database.username, database.p
   dialect: database.dialect
 });
 
-const usersDefine = require("./users.model.js");
+sequelize.sync()
+    .then(() => {
+        console.log("[+] Synced database");
+    })
+    .catch((err) => {
+        console.log("Failed to sync db: " + err.message);
+    });
 
-const db = {
-    Sequelize: Sequelize,
-    sequelize: sequelize,
-    users: usersDefine(sequelize, Sequelize),
-};
-
-
-module.exports = db;
+module.exports = sequelize;

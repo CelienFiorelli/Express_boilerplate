@@ -1,7 +1,6 @@
 const request = require('supertest');
 const app = require('../app');
-const db = require("../models");
-const Users = db.users;
+const Users = require('../models/users.model');
 
 describe('Users Controller', () => {
   test('GET /user - It should respond with list of users', async () => {

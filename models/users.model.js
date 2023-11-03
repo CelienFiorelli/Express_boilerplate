@@ -1,27 +1,19 @@
 const { Sequelize } = require("sequelize");
+const sequelize = require('./index');
 
-/**
- * 
- * @param {Sequelize} sequelize 
- * @param {Sequelize} Sequelize 
- * @returns {Users}
- */
-const usersDefine = (sequelize, Sequelize) => {
-  const Users = sequelize.define("users", {
-    username: {
-      type: Sequelize.STRING,
-      unique: true
-    },
-    password: {
-      type: Sequelize.STRING
-    },
-    role: {
-      type: Sequelize.STRING,
-      defaultValue: 'user'
-    }
-  });
+const Users = sequelize.define("users", {
+  username: {
+    type: Sequelize.STRING,
+    unique: true
+  },
+  password: {
+    type: Sequelize.STRING
+  },
+  role: {
+    type: Sequelize.STRING,
+    defaultValue: 'user'
+  }
+});
 
-  return Users;
-};
 
-module.exports = usersDefine;
+module.exports = Users;

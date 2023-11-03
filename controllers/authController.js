@@ -3,9 +3,7 @@ const jwt = require('jsonwebtoken');
 const { token } = require('../config.json');
 const express = require('express');
 const { verifyParams } = require("../middleware/verifyParams");
-
-const db = require("../models");
-const Users = db.users;
+const Users = require('../models/users.model');
 
 const router = express.Router();
 
