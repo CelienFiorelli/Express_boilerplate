@@ -9,7 +9,8 @@ const { Sequelize } = require("sequelize");
 const usersDefine = (sequelize, Sequelize) => {
   const Users = sequelize.define("users", {
     username: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      unique: true
     },
     password: {
       type: Sequelize.STRING
