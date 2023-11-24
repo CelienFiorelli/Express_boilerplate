@@ -6,9 +6,12 @@ const Users = require('../models/users.model');
 describe('Auth Controller', () => {
     test('POST /register - It should register a new user', async () => {
         const userData = {
-            username: 'newUser',
+            username: 'registerUser',
             password: 'password123',
         };
+        try {
+            await Users.destroy({ where: userData })
+        } catch (error) { }
 
         const response = await request(app)
             .post('/register')
