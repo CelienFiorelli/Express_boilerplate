@@ -11,7 +11,7 @@ const verifyParams = (params) => (req, res, next) => {
     }
 
     if (emptyField.length) {
-        return res.send({ error: `${req.method} parameter ${emptyField.join(', ')} is required` })
+        return res.status(422).send({ error: `${req.method} parameter ${emptyField.join(', ')} is required` })
     }
     next();
 }
